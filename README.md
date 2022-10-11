@@ -11,7 +11,7 @@ void setName(int NAME) { Name = NAME; }
 
 Приклад визначення об’єкта:
    Human El_Human;
-   Human El_Kolya (“Nikolay”) 
+   Human El_Kolya (“Mykola”) 
 
 2. Чи обов’язково в описі класу повинні міститись конструктор і
 деструктор?

@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+
+class MyClass                       
+{
+private:
+    int *x;                     
+    int size;
+public:
+
+    MyClass() {                     
+        x = 0;
+        
+    }
+
+    MyClass(int size) {   
+        this->size = size;
+        this->x = new int[size];
+        for (int i = 0; i<size; i++)
+        {
+          x[i] = i;
+          cout << "Arr1[" << i << "]=" << x[i] <<endl;
+        }
+        cout << endl;
+    }
+    MyClass (const MyClass &other)
+    {
+        int cc=0;
+        this->size = other.size;
+        this->x = new int[other.size];
+        for (int i = 0; i<size; i++)
+        {
+          if (other.x[i]%2 != 0) {
+          this->x[i] = other.x[i]; 
+              
+          }
+          else {
+              this->x[i] = other.x[i]-5 ;
+              cc++;
+          }
+          cout << "Arr2[" << i << "]=" << x[i] <<endl;
+        }
+         cout << endl << "Paired numbers -" << cc << endl;
+    }
+    
+     
+    ~MyClass() {                    
+        delete[] x;
+        
+    }  
+
+ 
+    
+};
+
+
+int main() {
+   
+    MyClass a(11) ;
+    MyClass b(a);
+    return 0;
+    
+}                                            
+
+

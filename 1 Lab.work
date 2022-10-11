@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+class star                       
+{
+private:
+    float x;                     
+    float y;
+public:
+
+    star() {                     
+        x = 0;
+        y = 0;
+    }
+
+    star(float xedge, float yedge) {           
+        x = xedge;
+        y = yedge;
+    
+    } 
+    ~star() {                    
+        
+    }  
+
+    float getX() {                
+        return x; 
+    }  
+    
+   float getY() {                 
+        return y; 
+    }  
+
+    void setX(float xedge) {     
+        x = xedge;
+    }
+    
+    void setY(float yedge) {     
+        y = yedge;
+    }
+
+    void print_sqr() {               
+        float h, a, b;
+        h = (x - y) / 2;
+        a = (y * h) / 2;
+        b = y * y;
+        float sqr = (4 * a) + b;
+        cout << "Edge 1-" << x << " Edge 2-" << y << "см " << ", Star " << sqr << " см^2" << endl;
+    }
+};
+
+
+int main() {
+   
+    float x, y;
+    cout << "Введіть сторону А:"<< endl;
+    cin >> x;
+    cout << "Введіть сторону B:"<< endl;
+    cin >> y;
+    star a(x, y);                    
+                             
+    a.print_sqr();              
+}                                            

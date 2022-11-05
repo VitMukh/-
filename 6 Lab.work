@@ -1,0 +1,200 @@
+
+#include <conio.h>
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+class Engine                        
+{
+    int horse_power;
+    string name;
+    string engine_type;
+public:
+    Engine() { 
+        horse_power = 0; 
+    }
+    
+    Engine(int POWER, string NAME, string TYPE)
+    { 
+        horse_power = POWER;
+        name = NAME; 
+        engine_type = TYPE;
+
+    }
+    
+    ~Engine() {} 
+    
+    void set_power(int power) 
+    {
+        horse_power = power; 
+    }
+    
+    int get_power() 
+    { 
+        return horse_power; 
+    }
+    void set_name(string NAME)
+    { 
+        name = NAME;
+    }
+    string get_name() 
+    { return name; }
+    
+    void set_type(string TYPE)
+    { 
+        engine_type = TYPE;
+    }
+    string get_type() 
+    {
+        return engine_type;
+    }
+    
+    
+};
+
+class IC_Engine : public Engine
+{
+    int engine_capacity; 
+    string fuel_type;
+    int cylinder_numb;
+public:
+    IC_Engine() {
+        
+        engine_capacity = 0; 
+        cylinder_numb = 0;
+    }
+    IC_Engine(int capacity, string FUEL_TYPE, int numb)
+    { 
+        engine_capacity = capacity; 
+        fuel_type = FUEL_TYPE;
+        cylinder_numb = numb;
+    }
+    ~IC_Engine() {}
+    void set_capacity(int capacity) 
+    {
+        engine_capacity = capacity; 
+    }
+    
+    int get_capacity() 
+    { 
+        return engine_capacity; 
+    }
+    
+    
+    void set_fuel_type(string FUEL_TYPE)
+    { 
+        fuel_type = FUEL_TYPE;
+    }
+    string get_fuel_type() 
+    { return fuel_type; }
+    
+    void set_numb(int numb) 
+    {
+       cylinder_numb = numb;
+    }
+    
+    int get_numb() 
+    { 
+        return cylinder_numb; 
+    }
+    
+};
+class DieselEngine :  public IC_Engine
+{
+    string DI;
+public:
+    DieselEngine() 
+    { 
+        DI = "";
+    }
+    DieselEngine(string di) 
+    { 
+        DI = di;
+    }
+    
+    ~DieselEngine() {}
+    
+    void set_DI(string di)
+    { 
+        DI = di;
+    }
+    string get_DI() 
+    { 
+        return DI;
+    }
+    void show();
+};
+
+class Elec_Engine : public Engine
+{
+    int kW;
+public:
+   Elec_Engine()
+   {
+      kW = 0; 
+   }
+   Elec_Engine(int KW) 
+   { 
+       kW = KW;
+   }
+   ~Elec_Engine() {}
+
+    void set_kW(int KW)
+    {
+        kW = KW; 
+    }
+    
+    int get_kW()
+    { 
+        return kW;
+    }
+    
+    void show();
+};
+
+void DieselEngine::show()
+{
+    cout << "Назва двигуна " << "- " << get_name() << endl;
+    cout << "Тип двигуна " << "- " << get_type() << endl;
+    cout << "К-ть циліндрів " << "- " << get_numb() << endl;
+    cout << "Тип палива " << "- " << get_fuel_type() << endl;
+    cout << "Об'єм двигуна " << "- " << get_capacity() << endl;
+    cout << "Потужність двигуна (Кінських сил)" << "- " << get_power() << endl;
+    cout << "Система вприску " << "- " << get_DI() << endl << endl;
+    
+}
+
+void Elec_Engine::show()
+{
+    cout << "Назва двигуна " << "- " << get_name() << endl;
+    cout << "Тип двигуна " << "- " << get_type() << endl;
+    cout << "Потужність двигуна (Кінських сил)" << "- " << get_power() << endl;
+    cout << "Потужність двигуна (кВт)" << "- " << get_kW() << endl;
+}
+
+
+int main() {
+    setlocale(0, "");
+    DieselEngine A;
+    Elec_Engine B;
+    A.set_name("6-ТД-4");
+    A.set_power(1500);
+    A.set_type("Дизельний, Двухтактний, Опозитний");
+    A.set_fuel_type("Дизельне паливо/Бензин");
+    A.set_numb(6);
+    A.set_capacity(26000);
+    A.set_DI("Безпосередній Вприск");
+    B.set_name("АІР 56В2");
+    B.set_power(4);
+    B.set_kW(3);
+    B.set_type("Електродвигун Асинхронний Трьохфазний");
+    A.show();
+    B.show();
+    return 0;
+}                             
+
+
+ 
+
+

@@ -1,0 +1,106 @@
+#include <iostream>
+
+class Shape {
+public:
+		virtual float get_V() = 0;
+		virtual void print() = 0;
+};
+
+class Sphere : public Shape {
+private:
+		float R;
+public:
+		Sphere(float radius)
+		{
+				R = radius;
+		}
+		Sphere() : Sphere(0) {}
+		float get_V() override
+		{
+				return 4.0f / 3.0f * 3.14159f * R * R * R;
+		}
+		void set_R(float radius)
+		{
+				R = radius;
+		}
+		void print() override
+		{
+				std::cout << "Сфера: {Радіус: " << R << "; Об'єм: " << get_V() << "}" << std::endl;
+		}
+};
+
+class Cone : public Shape {
+private:
+		float R;
+		float H;
+public:
+		Cone(float radius, float height)
+		{
+				R = radius;
+				H = height;
+		}
+		Cone() : Cone(0, 0) {}
+		float get_V() override
+		{
+				return 3.14159f * R * R * H / 3.0f;
+		}
+		void set_R(float radius)
+		{
+				R = radius;
+		}
+		void set_H(float height)
+		{
+				H = height;
+		}
+		void print() override
+		{
+				std::cout << "Конус: {Радіус: " << R << "; Висота: " << H << "; Об'єм: " << get_V() << "}" << std::endl;
+		}
+};
+
+class Frustum : public Shape {
+private:
+		float R1;
+		float R2;
+		float H;
+public:
+		Frustum(float radius1, float radius2, float height)
+		{
+				R1 = radius1;
+				R2 = radius2;
+				H = height;
+		}
+		Frustum() : Frustum(0, 0, 0) {}
+		float get_V() override
+		{
+				return 3.14159f * H * (R1 * R1 + R2 * R2 + R1 * R2) / 3.0f;
+		}
+		void set_R1(float radius1)
+		{
+				R1 = radius1;
+		}
+		void set_R2(float radius2)
+		{
+				R2 = radius2;
+		}
+		void set_H(float height)
+		{
+				H = height;
+		}
+		void print() override
+		{
+				std::cout << "Зрізаний конус: {Радіус зрізу: " << R1 << "; Радіус основи: " << R2 << "; Висота: " << H << "; Об'єм: " << get_V() << "}" << std::endl;
+		}
+};
+
+int main()
+{
+		Shape *shapes[3];
+		shapes[0] = new Sphere(9);
+		shapes[1] = new Cone(3, 23);
+		shapes[2] = new Frustum(10, 13, 15);
+		for (int i = 0; i < 3; i++)
+		{
+				shapes[i]->print();
+		}
+}

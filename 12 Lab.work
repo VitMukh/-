@@ -1,0 +1,61 @@
+using System;
+namespace OOP12
+{
+    class Emoji
+    {
+        public double R;
+        public double r;
+        public double sqr;
+        public Emoji()
+        {
+            R = 0;
+            r = 0;
+            sqr = 0;
+        }
+        public Emoji(double a, double b)
+        {
+            R = a;
+            r = b;
+            sqr = (Math.PI * Math.Pow(R, 2)) - 2*(Math.PI * Math.Pow(r, 2));
+        }
+        public double Rad
+        {
+            get { return R; }
+            set { R = value; }
+        }
+        public double rad
+        {
+            get { return r; }
+            set { r = value; }
+
+        }
+        public double Sqr
+        {
+            get { return (Math.PI * Math.Pow(R, 2)) - 2 * (Math.PI * Math.Pow(r, 2)); }
+
+        }
+        public void print_val()
+        {
+            Console.WriteLine($"Square: " + Math.Round(sqr, 2));
+        }
+
+        public static Emoji operator +(Emoji a, Emoji b)
+        {
+            return new Emoji { R = a.R + b.R, rad = a.rad + b.rad, sqr = ((Math.PI*Math.Pow(a.R,2))-2*(Math.PI*Math.Pow(a.r,2))+(Math.PI*Math.Pow(b.R,2))-2*(Math.PI*Math.Pow(b.r, 2))) };
+        }}
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Смайлик через конструктор без параметрiв");
+            Emoji l = new Emoji();
+            Console.WriteLine($"Радiус основи:{l.R}\nРадiус очей:{l.r}\nПлоща:{Math.Round(l.sqr, 2)}\n");
+            Console.WriteLine("Смайлики через конструктор з параметрами");
+            Emoji x = new Emoji (7, 3);
+            Console.WriteLine($"Радiус основи:{x.R}\nРадiус очей:{x.r}\nПлоща:{Math.Round(x.sqr, 2)}\n");
+            Emoji y = new Emoji(14, 5);
+            Console.WriteLine($"Радiус основи:{y.R}\nРадiус очей:{y.r}\nПлоща:{Math.Round(y.sqr, 2)}\n");
+            Emoji z = x + y;
+            Console.WriteLine($"Радiус основи:{z.R}\nРадiус очей:{z.r}\nПлоща:{Math.Round(z.sqr, 2)}\n");
+        }}}

@@ -1,0 +1,57 @@
+using System;
+
+namespace Lab_9
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string n;
+            double res, x = 1, y, z;
+            double r, pc, pk, per, P;
+            Console.WriteLine("Виберiть опцiю: 1 - Розрахунок формули 2 - Розрахунок задачi ");
+            Console.WriteLine("Ввeдiть :");
+            n = Console.ReadLine();
+
+            switch (n)
+            {
+                case "1":
+                    Console.WriteLine("Введiть змiннi: ");
+                    do
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Ввeдiть x");
+                        x = float.Parse(Console.ReadLine());
+                        if (x == 0)
+                        {
+                            Environment.Exit(0);
+                        }
+                        Console.WriteLine("Ввeдiть y");
+                        y = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Ввeдiть z");
+                        z = float.Parse(Console.ReadLine());
+                        res = ((x * x) + Math.Sqrt(z * z - y));
+                        Console.WriteLine("Результат: " + Math.Round(res, 2));
+                        if (res < 0) { Console.WriteLine("Негативний"); }
+                        else Console.WriteLine("Позитивний");
+                        if (x < -10) { Console.WriteLine("X менш за -10"); }
+                        else if (x < -1) { Console.WriteLine("X менш за -1"); }
+                        else if (x > 1) { Console.WriteLine("X бiльш за 1"); }
+                        else if (x > 10) { Console.WriteLine("X бiльш за 10"); }
+                    } while (x != 0);
+                    break;
+                case "2":
+                    pc = 5;
+                    P = Math.PI;
+                    r = Math.Sqrt(pc/P);
+                    pk = 4 * (r * r); 
+                    per = 8 * r; 
+                    Console.WriteLine("Площа квадрату: " + Math.Round(pk, 2));
+                    Console.WriteLine("Периметр квадрату: " + Math.Round(per, 2));
+                    break;
+
+                default: break; 
+            }
+        }
+    }
+}

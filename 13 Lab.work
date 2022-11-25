@@ -1,0 +1,65 @@
+using System;
+
+namespace Lab13
+{
+  abstract class Candy
+  {
+    public string Name { get; set; }
+    public string Color { get; set; }
+    public double Weight { get; set; }
+    public double Cost { get; set; }
+    public Candy(string name, string color, double weight, double cost)
+    {
+      Name = name;
+      Color = color;
+      Weight = weight;
+      Cost = cost;
+    }
+    public override string ToString()
+    {
+      return string.Format("Name:{0,-15} Color:{1,-10} Weight:{2,-5} Cost:{3}", Name, Color, Weight, Cost);
+    }
+    public double WeightCost { get => Cost / Weight; }
+  }
+
+  class LickCandy : Candy
+  {
+    public double Duration { get; set; }
+    public LickCandy(string name, string color, double weight, double cost, double duration) : base(name, color, weight, cost)
+    {
+      Duration = duration;
+    }
+  }
+
+  class ChewCandy : Candy
+  {
+    public ChewCandy(string name, string color, double weight, double cost) : base(name, color, weight, cost)
+    {
+    }
+  }
+
+
+  internal class Program
+  {
+    static void Main(string[] args)
+    {
+      List<Candy> candies = new List<Candy>();
+      candies.Add(new LickCandy("Lollipop", "Red", 0.1, 10, 10));
+      candies.Add(new ChewCandy("Chewing Gum", "Blue", 0.2, 5));
+      candies.Add(new LickCandy("Jelly Bean", "Green", 0.3, 20, 15));
+      candies.Add(new ChewCandy("Gummi Bear", "Yellow", 0.4, 10));
+      candies.Add(new LickCandy("Candy Cane", "Orange", 0.5, 15, 8));
+      candies.Add(new ChewCandy("Tootsie Roll", "Purple", 0.6, 5));
+      candies.Add(new LickCandy("Chupa Chups", "White", 0.7, 25, 20));
+      candies.Add(new ChewCandy("Jawbreaker", "Black", 0.8, 10));
+      candies.Add(new LickCandy("Gummi Worm", "Brown", 0.9, 30, 25));
+      candies.Add(new ChewCandy("Jolly Rancher", "Pink", 1.0, 5));
+      //роздрукувати всі цукерки
+      foreach (Candy candy in candies)
+        Console.WriteLine(candy);
+
+      //Надрукувати суму ваги
+      Console.WriteLine("Weight: {0}", candies.Sum(candy => candy.Weight));
+    }
+  }
+}

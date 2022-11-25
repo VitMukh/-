@@ -1,0 +1,76 @@
+namespace Lab16
+{
+  class Integral
+  {
+    private readonly double a;
+    private readonly double b;
+    private readonly int n;
+    public delegate double Formula(double x);
+    private readonly Formula f;
+
+    public Integral(double a, double b, int n, Formula f)
+    {
+      this.a = a;
+      this.b = b;
+      this.n = n;
+      this.f = f;
+    }
+
+    public double Calculate()
+    {
+      var h = (b - a) / n;
+      var sum = 0.0;
+      for (var i = 0; i < n; i++)
+      {
+        var x = a + i * h;
+        sum += f(x);
+      }
+
+      return h * sum;
+    }
+
+    public override string ToString()
+    {
+      return $"{Calculate()}";
+    }
+  }
+  class TypeNameEvent
+  {
+    public delegate void MyDelegate();
+    public event MyDelegate FirstLetterTyped;
+    public void OnMyEvent()
+    {
+      FirstLetterTyped?.Invoke();
+    }
+
+    public TypeNameEvent()
+    {
+      FirstLetterTyped += () => Console.Write("erteletski ");
+      while (true)
+      {
+        var key = Console.ReadKey();
+        if (key.Key == ConsoleKey.Escape)
+          break;
+        if (key.Key == ConsoleKey.V)
+          OnMyEvent();
+      }
+    }
+  }
+
+  internal class Program
+  {
+    static void Main(string[] args)
+    {
+      Integral i1 = new Integral(1, 7, 10000, x => 1 / (Math.Pow(x, 1.0 / 3.0)));
+      Console.WriteLine("i1 = " + i1);
+
+      Integral i2 = new Integral(1, 7, 10000, x => 1 / (Math.Sqrt(x * x)));
+      Console.WriteLine("i2 = " + i2);
+
+      Integral i3 = new Integral(1, 7, 10000, x => Math.Cos(x));
+      Console.WriteLine("i3 = " + i3);
+
+      _ = new TypeNameEvent();
+    }
+  }
+}
